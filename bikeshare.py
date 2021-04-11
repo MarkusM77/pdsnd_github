@@ -266,7 +266,7 @@ def raw_data(df, x, month, day):
 
 
 def main():
-# This is the main function. It runs until the user enters any value except 'yes'.
+
     while True:
         city, month, day = get_filters()
         df, x = load_data(city, month, day)
