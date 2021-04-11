@@ -93,7 +93,9 @@ def time_stats(df, x, city, month, day):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
+
     if x == 'Month':
+        # This condition is met when a month is selected
         month_dic={1: 'January', 2: 'Febuary', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
         print('Here are the statistics for the year: 2017, month: {}, city: {}:'.format(month_dic[month], city))
         popular_dow=df['day_of_week'].mode()
@@ -265,7 +267,7 @@ def raw_data(df, x, month, day):
 
 
 def main():
-# This is the main function. It runs until the user enters any value except 'yes'.
+
     while True:
         city, month, day = get_filters()
         df, x = load_data(city, month, day)
