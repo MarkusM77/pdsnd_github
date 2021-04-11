@@ -16,5 +16,8 @@ washington.csv
 new_york_city.csv
 chicago.csv
 
+### Details
+This project was carried out using the Visual Studio Editor.
+
 ### Credits
 Thanks to UDACITY :-)
