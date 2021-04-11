@@ -17,7 +17,7 @@ def get_filters():
         city=input('\nPlease enter: Chicago, NYC (for New York City) or Washington\nYour choice: ').lower().title()
     else:
         print('\nThank you! The city you would like to explore is {}.\n'.format(city))
-   
+
     x = input('Do you want to filter the data by month, day or not at all? (type month, day or non): ').lower().title()
     while x not in {'Month', 'Day', 'Non'}:
         print('Sorry. Your input doesn\'t match the mentioned criteria (month,day,non) .\nTry again.')
@@ -50,7 +50,7 @@ def get_filters():
         print('Ok, so you dont want any filter.')
         month=0
         day=0
-        
+
     return(city,month,day)
     print('-'*40)
 
@@ -82,18 +82,19 @@ def load_data(city, month, day):
     if month == 0 and day == 0:
         df=df
         x = 'Non'
-    
+
     return df, x
 
 
 
 def time_stats(df, x, city, month, day):
-    # This function calculates the statistics based on the dataframe which is generated above. 
+    # This function calculates the statistics based on the dataframe which is generated above.
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    if x == 'Month': 
+    if x == 'Month':
+        # This condition is met when a month is selected
         month_dic={1: 'January', 2: 'Febuary', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
         print('Here are the statistics for the year: 2017, month: {}, city: {}:'.format(month_dic[month], city))
         popular_dow=df['day_of_week'].mode()
@@ -143,7 +144,7 @@ def station_stats(df, x, city, month, day):
         print('END STATION: The most commonly used end station was: {}'.format(most_used_es[0]))
         fre_com=df.groupby(['Start Station', 'End Station']).size().sort_values(ascending=False)
         print('COMBINATION: The most frequent combination of Start and End station was: {} and {}'.format(fre_com.index[0][0],fre_com.index[0][1]))
-   
+
     elif x == 'Non':
         most_used=df['Start Station'].mode()
         print('START STATION: The most commonly used start station was: {}'.format(most_used[0]))
@@ -172,7 +173,7 @@ def trip_duration_stats(df):
     tdm=df['Total Travetime'].mean()
     tdm=tdm.components
     print('The mean travel time was: {} days, {} hours, {} minutes, {} seconds.'.format(tdm[0],tdm[1],tdm[2],tdm[3]))
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -214,14 +215,14 @@ def user_stats(df):
 
 
 def raw_data(df, x, month, day):
-# This function filters for the first 5 rows of raw data. The user is then recurrently asked if he wants to see 5 more rows. 
-# The 5 lines are only displayed if filter is non (all data). If filter settings are day or month, only the lines that match the filter condition will be displyed.   
+# This function filters for the first 5 rows of raw data. The user is then recurrently asked if he wants to see 5 more rows.
+# The 5 lines are only displayed if filter is non (all data). If filter settings are day or month, only the lines that match the filter condition will be displyed.
     start_time = time.time()
     i=4
 
     choice=input('\nWould you like to see 5 lines of raw data? (enter yes / no):\n').lower()
     while choice.lower() == 'yes':
-        
+
         if x == 'Month':
             print('\nCalculating raw data...\n')
             month_dic={1: 'January', 2: 'Febuary', 3: 'March', 4: 'April', 5: 'May', 6: 'June', 7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
@@ -259,9 +260,9 @@ def raw_data(df, x, month, day):
             else:
                 if choice == 'yes':
                     i += 5
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)  
+    print('-'*40)
 
 
 def main():
